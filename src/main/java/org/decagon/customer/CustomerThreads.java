@@ -16,14 +16,6 @@ public class CustomerThreads extends Thread{
 
     @Override
     public void run() {
-        CustomerService.isPurchaseAdded = false;
         customerService.buyProduct();
-        while (!CustomerService.isPurchaseAdded) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 }

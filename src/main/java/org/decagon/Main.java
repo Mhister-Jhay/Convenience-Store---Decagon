@@ -70,7 +70,7 @@ public class Main {
 		System.out.println();
 		System.out.println();
 		// Let's say the maximum number of customers attended to in the store is 3
-		ExecutorService executor = Executors.newFixedThreadPool(3);
+		ExecutorService executor = Executors.newFixedThreadPool(customer.getCustomerList().size());
 		for (int i = 0; i < customer.getCustomerList().size(); i++){
 			CustomerService customerService = new CustomerService(beverages, customer.getCustomerList().get(i), cashier);
 			CustomerThreads customerThread = new CustomerThreads(customerService, cashier, customer);
@@ -85,6 +85,7 @@ public class Main {
                 throw new RuntimeException(e);
             }
             if(cashier.customerFIFOQueue.size()== customer.getCustomerList().size()){
+				executor.close();
                 break;
             }
         }
@@ -117,7 +118,6 @@ public class Main {
 		System.out.println();
 		System.out.println();
 		cashierService.closingStock();
-		executor.close();
     }
 
 }

@@ -26,7 +26,7 @@ public class CustomerService {
 		this.cashier = cashier;
 	}
 
-	public void buyProduct() {
+	synchronized public void buyProduct() {
 		JLabel label = new JLabel();
 		JFrame frame = new JFrame();
 		JButton beverageButton = new JButton("Beverages");
